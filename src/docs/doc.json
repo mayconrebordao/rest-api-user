@@ -1,0 +1,267 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Lista de Usuários",
+        "description": "Essa API prove o acesso aos usuários de um sistema em NodeJs MongoDB",
+        "version": "0.0.1",
+        "contact": {
+            "name": "Maycon de Arruda Rebordao",
+            "email": "r.macon1122@gmail.com"
+        }
+    },
+    "host": "api.muesite.com",
+    "schemes": [
+        "http"
+    ],
+    "basePath": "/v1",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/": {
+            "all": {
+                "sumary": "Retorna a documentação da API",
+                "description": "retorna um arquivo json com todas as rotas e possibilidades de consumo de dados da api.",
+                "responses": {
+                    "200": {
+                        "description": "retorna um json",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "summary": "Lista dos Usuários",
+                "description": "Retorna **todos** os usuários cadastrados no sistemas.\n",
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Uma lista <array> de usuários",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/User"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Erro inesperado",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Criar um  Usuário",
+                "description": "Este endpoint cadastra um usuário no sistema.\n",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "Usuário cadastrado com sucesso!",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Retorna o  usuário casdastrado",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "default": {
+                        "description": "Erro inesperado",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "summary": "Mostra Usuário .",
+                "description": "Este endpoint retorna **apenas** um usuário cadastrado no sistema.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do usuário",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário encontrado",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "default": {
+                        "description": "Erro inesperado",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Apagar um Usuário .",
+                "description": "Este endpoint apaga um usuário cadastrado no sistema identificado pelo ID.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do usuário",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário excluído com sucesso!",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "404": {
+                        "description": "usuário não encontrado. Lembrese de informar o ID do usuário."
+                    },
+                    "410": {
+                        "description": "Esse usuário não existe mais."
+                    },
+                    "default": {
+                        "description": "Erro inesperado",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Apagar um Usuário .",
+                "description": "Este endpoint atualizar um usuário cadastrado no sistema identificado pelo ID.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do usuário",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário atualizado com sucesso!",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "404": {
+                        "description": "usuário não encontrado. Lembrese de informar o ID do usuário."
+                    },
+                    "default": {
+                        "description": "Erro inesperado",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "type": "object",
+            "required": [
+                "age",
+                "name",
+                "cpf"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Esse é o ID que identifica o usuário no sistema"
+                },
+                "age": {
+                    "type": "integer",
+                    "description": "Email do usuário."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Nome do usuário"
+                },
+                "cpf": {
+                    "type": "string",
+                    "description": "Cpf do usário"
+                },
+                "tasks": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "id que serve como foregnkey para relacionar os usuários a suas tasks"
+                    },
+                    "description": "tasks relacioandas ao usuário."
+                }
+            }
+        },
+        "Task": {
+            "type": "object",
+            "required": [
+                "name",
+                "assignedTo"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Id unico da task, ele é representado por uma string pois no mongodb os Id são do tipo objectId."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Nome da tarefa"
+                },
+                "assignedTo": {
+                    "type": "string",
+                    "description": "id que serve como foregnkey paara relacionar tasks a usuários."
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
