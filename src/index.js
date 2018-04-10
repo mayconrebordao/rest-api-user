@@ -41,5 +41,5 @@ app.use((error, req, res, next) => {
 });
 app.listen(7007, error => {
   if (error) console.log("Error " + error);
-  // else console.log("Server run port 7007");
+  else console.log("Server run port 7007");
 });
