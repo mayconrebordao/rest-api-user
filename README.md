@@ -1,8 +1,8 @@
-# rest-user-api
-Web API em NodeJs para exemplificar um simples CRUD fo Model usuários usando MongoDB, usando relacionamento em NoSql relacioando usuários e suas tasks 
+# rest-api-user
 
-   - para instalar:
-        - $ git clone https://github.com/mayconrebordao/rest-api-user.git
-        - cd api-node
-        - yarn install
-        - yarn start
+# rest-api-user Web API em NodeJs para exemplificar um simples CRUD usando MongoDB, com autenticação, exemplo de recuperação de senha - para instalar:
+
+    - $ git clone https://github.com/mayconrebordao/rest-api-user.git
+    - cd rest-user-api
+    - yarn install
+    - yarn start
