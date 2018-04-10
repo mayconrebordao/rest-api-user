@@ -1,4 +1,4 @@
-# api-node
+# rest-user-api
 Web API em NodeJs para exemplificar um simples CRUD fo Model usuários usando MongoDB, usando relacionamento em NoSql relacioando usuários e suas tasks 
 
    - para instalar:
