@@ -13,3 +13,4 @@ rest-api-user Web API em NodeJs para exemplificar um simples CRUD usando MongoDB
     - $ cd rest-user-api
     - $ yarn install
     - $ yarn start
+    - $ [abrir aplicação](http://localhost:7007)
